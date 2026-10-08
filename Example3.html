@@ -77,6 +77,14 @@
         </div>
         <figure id="chart2"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
     </section>
+
+        <section>
+        <div class="chart-description">
+            <h2>Section 3: US diesel prices</h2>
+            <p>My own chart, using weekly data downloaded from FRED.</p>
+        </div>
+        <figure id="chart3"></figure>
+    </section>
  
 
     <!-- Do you want to add more sections? -->
@@ -99,11 +107,15 @@
                                                                                                                     // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"                                                                                                            // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
 
         vegaEmbed('#chart2', figure_2_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+        let figure_3_spec = "diesel_chart.json";
+        vegaEmbed('#chart3', figure_3_spec)
         // Do you want to add more graphs?
         // try defining a new variable for figure_3_spec, adding VegaEmbed for Location3, and adding a new section in the HTML
         // e.g. 
         // let figure_3_spec = ...
         // vegaEmbed('#Location3', figure_3_spec)
+
+        
 
 
     </script>
