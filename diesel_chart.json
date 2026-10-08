@@ -1,0 +1,17 @@
+{"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "data": {
+       "url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/refs/heads/main/diesel.csv"},
+
+    "title": {"text": "US diesel price", "subtitle": ["US dollars per gallon", "Source: FRED"]},
+
+    "width":300,
+    "height":300,
+
+    "mark":{"type": "line","color":"red"},
+ 
+    "encoding": {
+      "x": {"field":"Date", "type": "temporal"},
+      "y": {"field": "Value","type": "quantitative"}
+    }
+}
