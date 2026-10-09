@@ -93,6 +93,14 @@
        </div>
        <figure id="chart4"></figure>
    </section>
+
+   <section>
+    <div class="chart-description">
+        <h2>Section 5: A chart from another repository</h2>
+        <p>Pulled in using a full raw GitHub link to Richard's chart.</p>
+    </div>
+    <figure id="chart5"></figure>
+</section>
  
 
     <!-- Do you want to add more sections? -->
@@ -119,6 +127,9 @@
         vegaEmbed('#chart3', figure_3_spec)
            let figure_4_spec = "chocolate_chart.json";
    vegaEmbed('#chart4', figure_4_spec)
+            let figure_5_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json";
+vegaEmbed('#chart5', figure_5_spec)
+   
         // Do you want to add more graphs?
         // try defining a new variable for figure_3_spec, adding VegaEmbed for Location3, and adding a new section in the HTML
         // e.g. 
