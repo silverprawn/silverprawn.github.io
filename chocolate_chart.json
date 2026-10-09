@@ -1,0 +1,15 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "UK: chocolate's weight in the CPI basket",
+    "subtitle": ["Parts per 1,000 of household spending", "Source: ONS"]
+  },
+  "width": 400,
+  "height": 300,
+  "data": {"url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/refs/heads/main/chocolate_cpi.csv"},
+  "mark": {"type": "line", "color": "#5b3a29", "point": true},
+  "encoding": {
+    "x": {"field": "Date", "type": "temporal", "title": null, "axis": {"format": "%Y"}},
+    "y": {"field": "Value", "type": "quantitative", "title": null}
+  }
+}

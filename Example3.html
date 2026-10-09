@@ -85,6 +85,14 @@
         </div>
         <figure id="chart3"></figure>
     </section>
+
+       <section>
+       <div class="chart-description">
+           <h2>Section 4: Chocolate in the UK CPI basket</h2>
+           <p>Chocolate's weight in the consumer price index, using data downloaded from the ONS.</p>
+       </div>
+       <figure id="chart4"></figure>
+   </section>
  
 
     <!-- Do you want to add more sections? -->
@@ -109,6 +117,8 @@
         vegaEmbed('#chart2', figure_2_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
         let figure_3_spec = "diesel_chart.json";
         vegaEmbed('#chart3', figure_3_spec)
+           let figure_4_spec = "chocolate_chart.json";
+   vegaEmbed('#chart4', figure_4_spec)
         // Do you want to add more graphs?
         // try defining a new variable for figure_3_spec, adding VegaEmbed for Location3, and adding a new section in the HTML
         // e.g. 
