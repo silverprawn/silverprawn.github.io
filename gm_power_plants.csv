@@ -1,0 +1,23 @@
+name,latitude,longitude,capacity_mw,primary_fuel,fuel_category,council
+Clifton Hall,53.5207,-2.3146,1.0,Waste,Biomass,Salford
+Salford Road,53.5799,-2.4269,1.6,Solar,Solar,Bolton
+South Manchester Resource Recovery Centre (AD),53.3944,-2.2461,2.0,Biomass,Biomass,Manchester
+Salford Refuse Treatment Plant (AD),53.4953,-2.2873,2.0,Biomass,Biomass,Salford
+Reliance Street Mechanical Biological Treatment Facility (MBT),53.5041,-2.1807,2.0,Biomass,Biomass,Manchester
+Bredbury Park Way - AD Stockport (Waste AD),53.4274,-2.1143,2.0,Biomass,Biomass,Stockport
+Kirkless Power,53.5474,-2.5901,2.1,Waste,Biomass,Wigan
+Scouthead Power Plant,53.5551,-2.0392,2.9,Waste,Biomass,Oldham
+Godley Water Treatment Works,53.4551,-2.0585,3.0,Solar,Solar,Tameside
+Pilsworth Quarry Landfill Scheme,53.5836,-2.2583,4.1,Waste,Biomass,Bury
+Heywood,53.596,-2.196,4.2,Solar,Solar,Rochdale
+Bent Spur Solar Farm,53.5331,-2.376,5.0,Solar,Solar,Bolton
+Thompson House Equestrian farm,53.5976,-2.684,5.0,Solar,Solar,Wigan
+Pilsworth Landfill Site,53.5771,-2.2699,5.0,Storage,Storage,Bury
+Whitehead Landfill,53.4918,-2.4491,5.3,Waste,Biomass,Wigan
+Bolton EfW,53.567,-2.4076,8.0,Waste,Biomass,Bolton
+Crook Hill (Revised Application - Calderdale MBC) 1 of 2,53.6681,-2.1117,13.6,Wind,Wind,Rochdale
+Lascar Works,53.5975,-2.2951,20.0,Storage,Storage,Bury
+Crook Hill (Revised Application - Rochdale MBC) 2 of 2,53.6705,-2.1148,23.8,Wind,Wind,Rochdale
+Ardwick Railway Goods Yard Incinerator (Newhaven EFW Plant),53.474,-2.2079,33.5,Waste,Biomass,Manchester
+SAICA Paper Mill,53.4251,-2.4195,41.6,Biomass,Biomass,Trafford
+Carrington,53.4366,-2.4077,900.0,Gas,Gas,Trafford
