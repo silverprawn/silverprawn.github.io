@@ -126,13 +126,16 @@
   <p><a href="DevolutionDashboard.html">Open my devolution dashboard</a></p>
 
     <!-- ========== CC7 ========== -->
+    <!-- ========== CC7 ========== -->
   <h2>CC7. Maps: base maps and choropleths</h2>
 
   <h3>(1) Coordinate map</h3>
   <div id="cc7_chart1"></div>
+  <p>Greater Manchester’s generating capacity in this dataset is concentrated in one gas plant: Carrington in Trafford accounts for about 83% of the recorded total (900 of roughly 1,090 MW). The remaining sites are much smaller and include biomass, solar, wind and storage facilities.</p>
 
   <h3>(2) Choropleth</h3>
   <div id="cc7_chart2"></div>
+  <p>House prices vary sharply within Greater Manchester. In the year to September 2025, many neighbourhoods in the south, particularly in Trafford and Stockport, had median house prices above £300,000, while neighbourhoods with median prices below £200,000 were common in the north and west, such as Wigan, Bolton, Rochdale and Oldham.</p>
   
   <h2>AI use</h2>
   <p>AI use. I used Claude (Anthropic) for coding and data tasks: writing and debugging the HTML, Vega-Lite chart specifications and the Python scraping notebook, and transcribing data values from the DOSM chart for CC4.</p>
@@ -148,7 +151,7 @@
     vegaEmbed("#cc4_chart2", "charts/cc4_improved.json");
     vegaEmbed("#cc5_chart1", "charts/cc5_api_chart.json");
     vegaEmbed("#cc5_chart2", "charts/cc5_scraper_chart.json");
-        vegaEmbed("#cc7_chart1", "charts/cc7_point_map.json");
+      vegaEmbed("#cc7_chart1", "charts/cc7_point_map.json");
     vegaEmbed("#cc7_chart2", "charts/cc7_choropleth.json");
     
   </script>
