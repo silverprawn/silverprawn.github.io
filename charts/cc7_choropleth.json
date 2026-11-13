@@ -1,0 +1,125 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Choropleth: median house price by MSOA in Greater Manchester, joined with a lookup",
+ "title": {
+  "text": "House prices in Greater Manchester are highest in the south",
+  "subtitle": [
+   "Median house price, all homes, year to September 2025, by neighbourhood (MSOA). Lines: council borders.",
+   "Source: ONS house price statistics for small areas, via Growth Lab data; boundaries: ONS via Growth Lab map-data"
+  ],
+  "anchor": "start",
+  "fontSize": 14,
+  "subtitleFontSize": 11,
+  "subtitleColor": "#555"
+ },
+ "width": 440,
+ "height": 380,
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ },
+ "projection": {
+  "type": "mercator"
+ },
+ "layer": [
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/map-data/refs/heads/main/gbr/sa/msa001_greater_manchester/MSOA.json",
+    "format": {
+     "type": "topojson",
+     "feature": "geog"
+    }
+   },
+   "transform": [
+    {
+     "lookup": "properties.id",
+     "from": {
+      "data": {
+       "url": "https://raw.githubusercontent.com/jhellingsdata/LSE-PP434/main/weeks/week07/data/msa/house_prices_MSOA_ENG.csv"
+      },
+      "key": "geo_id",
+      "fields": [
+       "value"
+      ]
+     }
+    }
+   ],
+   "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.2
+   },
+   "encoding": {
+    "color": {
+     "condition": {
+      "test": "!isValid(datum.value)",
+      "value": "#e3e3e3"
+     },
+     "field": "value",
+     "type": "quantitative",
+     "title": "Median price (\u00a3)",
+     "scale": {
+      "type": "threshold",
+      "domain": [
+       150000,
+       200000,
+       250000,
+       300000,
+       400000
+      ],
+      "range": [
+       "#deebf7",
+       "#c6dbef",
+       "#9ecae1",
+       "#6baed6",
+       "#3182bd",
+       "#08519c"
+      ]
+     },
+     "legend": {
+      "title": "Median price (\u00a3)",
+      "type": "symbol",
+      "format": ",.0f",
+      "symbolType": "square"
+     }
+    },
+    "tooltip": [
+     {
+      "field": "properties.name",
+      "title": "Area"
+     },
+     {
+      "field": "value",
+      "type": "quantitative",
+      "format": ",.0f",
+      "title": "Median price (\u00a3)"
+     }
+    ]
+   }
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/map-data/refs/heads/main/gbr/sa/msa001_greater_manchester/LAD.json",
+    "format": {
+     "type": "topojson",
+     "feature": "geog"
+    }
+   },
+   "mark": {
+    "type": "geoshape",
+    "filled": false,
+    "stroke": "#555555",
+    "strokeWidth": 0.8
+   },
+   "encoding": {
+    "tooltip": [
+     {
+      "field": "properties.name",
+      "title": "Council"
+     }
+    ]
+   }
+  }
+ ]
+}

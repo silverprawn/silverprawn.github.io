@@ -1,0 +1,161 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "Coordinate map: power plants inside Greater Manchester, sized by capacity and coloured by fuel",
+ "title": {
+  "text": "One gas plant provides most of Greater Manchester's generating capacity",
+  "subtitle": [
+   "Power plants in Greater Manchester, by fuel; circle area = capacity (MW). Lines: council borders.",
+   "Carrington (gas, Trafford) is 900 MW of about 1,090 MW in total. Source: PP434 course data (uk_power_plants.csv)"
+  ],
+  "anchor": "start",
+  "fontSize": 14,
+  "subtitleFontSize": 11,
+  "subtitleColor": "#555"
+ },
+ "width": 440,
+ "height": 380,
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ },
+ "projection": {
+  "type": "mercator"
+ },
+ "layer": [
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/map-data/refs/heads/main/gbr/sa/msa001_greater_manchester/LAD.json",
+    "format": {
+     "type": "topojson",
+     "feature": "geog"
+    }
+   },
+   "mark": {
+    "type": "geoshape",
+    "fill": "#f0f0f0",
+    "stroke": "#bbbbbb",
+    "strokeWidth": 0.8
+   },
+   "encoding": {
+    "tooltip": [
+     {
+      "field": "properties.name",
+      "title": "Council"
+     }
+    ]
+   }
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/main/gm_power_plants.csv"
+   },
+   "mark": {
+    "type": "circle",
+    "opacity": 0.75,
+    "stroke": "white",
+    "strokeWidth": 0.6
+   },
+   "encoding": {
+    "longitude": {
+     "field": "longitude",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "latitude",
+     "type": "quantitative"
+    },
+    "size": {
+     "field": "capacity_mw",
+     "type": "quantitative",
+     "title": "Capacity (MW)",
+     "scale": {
+      "type": "sqrt",
+      "range": [
+       20,
+       1600
+      ]
+     },
+     "legend": {
+      "values": [
+       5,
+       50,
+       500
+      ]
+     }
+    },
+    "color": {
+     "field": "fuel_category",
+     "type": "nominal",
+     "title": "Fuel",
+     "scale": {
+      "domain": [
+       "Gas",
+       "Biomass",
+       "Solar",
+       "Wind",
+       "Storage"
+      ],
+      "range": [
+       "#d95f02",
+       "#1b9e77",
+       "#e6ab02",
+       "#1f78b4",
+       "#7570b3"
+      ]
+     }
+    },
+    "tooltip": [
+     {
+      "field": "name",
+      "title": "Plant"
+     },
+     {
+      "field": "council",
+      "title": "Council"
+     },
+     {
+      "field": "primary_fuel",
+      "title": "Fuel"
+     },
+     {
+      "field": "capacity_mw",
+      "title": "Capacity (MW)",
+      "format": ",.1f"
+     }
+    ]
+   }
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/main/gm_power_plants.csv"
+   },
+   "transform": [
+    {
+     "filter": "datum.capacity_mw >= 500"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 22,
+    "fontSize": 11,
+    "fontWeight": "bold",
+    "color": "#333"
+   },
+   "encoding": {
+    "longitude": {
+     "field": "longitude",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "latitude",
+     "type": "quantitative"
+    },
+    "text": {
+     "value": "Carrington, 900 MW"
+    }
+   }
+  }
+ ]
+}
