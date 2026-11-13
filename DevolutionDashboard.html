@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yin Shia NG (Esther) | UK Devolution Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #fafafa;
+    }
+    h1 { color: #1f4e9c; border-bottom: 3px solid #1f4e9c; padding-bottom: 8px; }
+    h2 { color: #1f4e9c; margin-top: 40px; }
+    a { color: #1f4e9c; }
+    p { max-width: 80ch; }
+    /* The grid: 2 charts per row, 3 rows */
+    #charts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .chart {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 0;
+      overflow-x: auto;
+    }
+    /* On phones: one chart per row */
+    @media (max-width: 760px) {
+      #charts { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>UK Devolution Dashboard</h1>
+  <p><a href="portfolio.html">Back to portfolio</a> · <a href="index.html">Home</a></p>
+
+  <h2>WRITE YOUR HEADING HERE</h2>
+  <p>WRITE YOUR INTRODUCTION HERE</p>
+
+  <!-- Six empty boxes for the charts, with ids c1 to c6 -->
+  <div id="charts">
+    <figure id="c1" class="chart"></figure>
+    <figure id="c2" class="chart"></figure>
+    <figure id="c3" class="chart"></figure>
+    <figure id="c4" class="chart"></figure>
+    <figure id="c5" class="chart"></figure>
+    <figure id="c6" class="chart"></figure>
+  </div>
+
+  <p>Data: Growth Lab strategic-authority indicators (from ONS, DESNZ), downloaded with a Python loop:
+    <a href="PASTE_YOUR_COLAB_LINK_HERE">Google Colab notebook</a>.</p>
+
+  <script>
+    // 1. A TEMPLATE CHART: the same for every chart, except the data link, title and axis label
+    const templateSpec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": {"text": "", "subtitle": "", "anchor": "start", "fontSize": 14,
+                "subtitleFontSize": 11, "subtitleColor": "#555"},
+      "width": 360,
+      "height": 200,
+      "config": {"view": {"stroke": null}},
+      "data": {"url": ""},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative", "title": null,
+              "axis": {"format": "d", "grid": false, "tickCount": 5}},
+        "y": {"field": "value", "type": "quantitative", "title": null,
+              "scale": {"zero": false}, "axis": {"gridColor": "#eeeeee"}}
+      },
+      "layer": [
+        {
+          "transform": [{"filter": "datum.short != 'GMCA'"}],
+          "mark": {"type": "line", "color": "#cccccc", "strokeWidth": 1},
+          "encoding": {"detail": {"field": "geo_id"},
+                       "tooltip": [{"field": "name", "title": "Authority"},
+                                   {"field": "year", "title": "Year"},
+                                   {"field": "value", "title": "Value", "format": ","}]}
+        },
+        {
+          "transform": [{"filter": "datum.short == 'GMCA'"}],
+          "mark": {"type": "line", "color": "#c8102e", "strokeWidth": 2.5},
+          "encoding": {"tooltip": [{"field": "name", "title": "Authority"},
+                                   {"field": "year", "title": "Year"},
+                                   {"field": "value", "title": "Value", "format": ","}]}
+        },
+        {
+          "data": {"values": [{"year": 2014}]},
+          "mark": {"type": "rule", "strokeDash": [4, 3], "color": "#555555"},
+          "encoding": {"x": {"field": "year", "type": "quantitative"}, "y": null}
+        }
+      ]
+    };
+
+    // 2. THE LIST TO LOOP OVER: one entry per chart (file name, title, subtitle)
+    const series = [
+      {file: "gva_per_head",           title: "Economic output per person",  subtitle: "GVA per resident, £, current prices"},
+      {file: "pay_fulltime",           title: "Full-time pay",               subtitle: "Median annual pay, full-time residents, £"},
+      {file: "employment_rate",        title: "Employment rate",             subtitle: "% of residents aged 16–64 in work"},
+      {file: "life_expectancy_female", title: "Female life expectancy",      subtitle: "Years at birth (middle year of 3-year period)"},
+      {file: "old_age_dependency",     title: "Old-age dependency",          subtitle: "Residents 65+ per 100 aged 16–64"},
+      {file: "emissions_per_head",     title: "Greenhouse gas emissions",    subtitle: "Tonnes CO2e per resident"}
+    ];
+
+    // 3. WHERE THE DATA FILES ARE (the folder on your GitHub, ending in /)
+    const baseUrl = "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/main/devolution_data/";
+
+    // 4. THE LOOP: one embed, run six times
+    for (let i = 0; i < series.length; i++) {
+      const spec = structuredClone(templateSpec);          // a fresh copy for each chart
+      spec.data.url = `${baseUrl}devo_${series[i].file}.json`;
+      spec.title.text = series[i].title;
+      spec.title.subtitle = [series[i].subtitle, "Red = Greater Manchester; grey = other strategic authorities; dashed = 2014 devolution deal"];
+      vegaEmbed(`#c${i + 1}`, spec);                       // chart i goes into box c1, c2, ...
+    }
+  </script>
+</body>
+</html>
