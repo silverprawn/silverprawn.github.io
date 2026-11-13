@@ -124,6 +124,15 @@
     <!-- ========== CC6 ========== -->
   <h2>CC6. Loops: UK devolution dashboard</h2>
   <p><a href="DevolutionDashboard.html">Open my devolution dashboard</a></p>
+
+    <!-- ========== CC7 ========== -->
+  <h2>CC7. Maps: base maps and choropleths</h2>
+
+  <h3>(1) Coordinate map</h3>
+  <div id="cc7_chart1"></div>
+
+  <h3>(2) Choropleth</h3>
+  <div id="cc7_chart2"></div>
   
   <h2>AI use</h2>
   <p>AI use. I used Claude (Anthropic) for coding and data tasks: writing and debugging the HTML, Vega-Lite chart specifications and the Python scraping notebook, and transcribing data values from the DOSM chart for CC4.</p>
@@ -139,6 +148,8 @@
     vegaEmbed("#cc4_chart2", "charts/cc4_improved.json");
     vegaEmbed("#cc5_chart1", "charts/cc5_api_chart.json");
     vegaEmbed("#cc5_chart2", "charts/cc5_scraper_chart.json");
+        vegaEmbed("#cc7_chart1", "charts/cc7_point_map.json");
+    vegaEmbed("#cc7_chart2", "charts/cc7_choropleth.json");
     
   </script>
 </body>
