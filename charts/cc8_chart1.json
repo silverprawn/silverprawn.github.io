@@ -1,0 +1,100 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "CC8 chart 1: distribution of restaurant coffee prices over time, collapsed to monthly percentiles",
+ "title": {
+  "text": "The price of a restaurant cup of coffee, 2006\u20132025",
+  "subtitle": [
+   "Line = median price each month; shaded band = 20th to 80th percentile of shop prices (\u00a3).",
+   "Source: ONS local price quotes (UK price database, Davies 2021), item 220121"
+  ],
+  "anchor": "start",
+  "fontSize": 14,
+  "subtitleFontSize": 11,
+  "subtitleColor": "#555"
+ },
+ "width": 460,
+ "height": 260,
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ },
+ "data": {
+  "url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/main/cc8_monthly.csv"
+ },
+ "encoding": {
+  "x": {
+   "field": "date",
+   "type": "temporal",
+   "title": null,
+   "axis": {
+    "format": "%Y",
+    "grid": false
+   }
+  }
+ },
+ "layer": [
+  {
+   "mark": {
+    "type": "area",
+    "color": "#c8102e",
+    "opacity": 0.18
+   },
+   "encoding": {
+    "y": {
+     "field": "p20",
+     "type": "quantitative",
+     "title": null,
+     "axis": {
+      "format": "$.2f",
+      "labelExpr": "'\u00a3' + format(datum.value,'.2f')",
+      "gridColor": "#eeeeee"
+     }
+    },
+    "y2": {
+     "field": "p80"
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "line",
+    "color": "#c8102e",
+    "strokeWidth": 2
+   },
+   "encoding": {
+    "y": {
+     "field": "median",
+     "type": "quantitative"
+    },
+    "tooltip": [
+     {
+      "field": "date",
+      "type": "temporal",
+      "format": "%b %Y",
+      "title": "Month"
+     },
+     {
+      "field": "median",
+      "format": ".2f",
+      "title": "Median (\u00a3)"
+     },
+     {
+      "field": "p20",
+      "format": ".2f",
+      "title": "20th pct (\u00a3)"
+     },
+     {
+      "field": "p80",
+      "format": ".2f",
+      "title": "80th pct (\u00a3)"
+     },
+     {
+      "field": "n",
+      "title": "Prices recorded"
+     }
+    ]
+   }
+  }
+ ]
+}
