@@ -136,7 +136,13 @@
   <h3>(2) Choropleth</h3>
   <div id="cc7_chart2"></div>
   <p>House prices vary sharply within Greater Manchester. In the year to September 2025, many neighbourhoods in the south, particularly in Trafford and Stockport, had median house prices above £300,000, while neighbourhoods with median prices below £200,000 were common in the north and west, such as Wigan, Bolton, Rochdale and Oldham.</p>
-  
+
+    <!-- ========== CC8 ========== -->
+  <h2>CC8. Big data: extracting a story from millions of prices</h2>
+  <p>Notebook: <a href="PASTE_YOUR_COLAB_LINK_HERE">Google Colab notebook (filtering and collapsing the price data)</a></p>
+  <div id="cc8_chart1"></div>
+  <div id="cc8_chart2"></div>
+  <p>WRITE YOUR 50-WORD EXPLANATION HERE</p>
   <h2>AI use</h2>
   <p>AI use. I used Claude (Anthropic) for coding and data tasks: writing and debugging the HTML, Vega-Lite chart specifications and the Python scraping notebook, and transcribing data values from the DOSM chart for CC4.</p>
   <script>
@@ -153,7 +159,8 @@
     vegaEmbed("#cc5_chart2", "charts/cc5_scraper_chart.json");
       vegaEmbed("#cc7_chart1", "charts/cc7_point_map.json");
     vegaEmbed("#cc7_chart2", "charts/cc7_choropleth.json");
-    
+        vegaEmbed("#cc8_chart1", "charts/cc8_chart1.json");
+    vegaEmbed("#cc8_chart2", "charts/cc8_chart2.json");
   </script>
 </body>
 </html>
