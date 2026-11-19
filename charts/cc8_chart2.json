@@ -1,0 +1,110 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "description": "CC8 chart 2: median restaurant coffee price by UK region, latest 12 months",
+ "title": {
+  "text": "Coffee costs most in London and least in the North of England",
+  "subtitle": [
+   "Median price of a restaurant cup of coffee, December 2024 to November 2025 (\u00a3). Dashed line = UK median (\u00a33.25).",
+   "Source: ONS local price quotes (UK price database, Davies 2021)"
+  ],
+  "anchor": "start",
+  "fontSize": 14,
+  "subtitleFontSize": 11,
+  "subtitleColor": "#555"
+ },
+ "width": 420,
+ "height": 300,
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ },
+ "data": {
+  "url": "https://raw.githubusercontent.com/silverprawn/silverprawn.github.io/main/cc8_by_region.csv"
+ },
+ "layer": [
+  {
+   "mark": {
+    "type": "bar"
+   },
+   "encoding": {
+    "y": {
+     "field": "region_s",
+     "type": "nominal",
+     "sort": "-x",
+     "title": null
+    },
+    "x": {
+     "field": "median",
+     "type": "quantitative",
+     "title": "Median price (\u00a3)",
+     "axis": {
+      "format": ".2f",
+      "grid": false,
+      "tickCount": 6
+     },
+     "scale": {
+      "domain": [
+       0,
+       3.6
+      ]
+     }
+    },
+    "color": {
+     "field": "country",
+     "type": "nominal",
+     "title": null,
+     "scale": {
+      "domain": [
+       "England",
+       "Scotland",
+       "Wales",
+       "Northern Ireland"
+      ],
+      "range": [
+       "#9aa5b1",
+       "#1f4e9c",
+       "#c8102e",
+       "#2a9d8f"
+      ]
+     },
+     "legend": {
+      "orient": "bottom"
+     }
+    },
+    "tooltip": [
+     {
+      "field": "region_s",
+      "title": "Region"
+     },
+     {
+      "field": "median",
+      "format": ".2f",
+      "title": "Median (\u00a3)"
+     },
+     {
+      "field": "n",
+      "title": "Prices recorded"
+     }
+    ]
+   }
+  },
+  {
+   "mark": {
+    "type": "rule",
+    "strokeDash": [
+     4,
+     3
+    ],
+    "color": "#222"
+   },
+   "encoding": {
+    "x": {
+     "aggregate": "mean",
+     "field": "uk_median",
+     "type": "quantitative"
+    }
+   }
+  }
+ ]
+}
